@@ -13,7 +13,15 @@ export class PaisService {
     // https://restcountries.eu/rest/v2/lang/es
     return this.http.get('https://gaia.inegi.org.mx/wscatgeo/mgee/').
             pipe(
-              map( resp => { return resp; } )
+              map( (estados:any) => { //Obtener arreglo de datos
+                return Object.values(estados.datos)//De propiedad arreglo "datos" obtendremos los estados
+                .map((estado:any)=>{//Datos a obtener de cada estado
+                  return {
+                    nombre: estado.nom_agee,
+                    codigo: estado.cve_agee
+                  }
+                }); 
+              })
             );
   }
   
