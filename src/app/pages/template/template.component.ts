@@ -13,7 +13,8 @@ export class TemplateComponent implements OnInit {
     nombre:'Salomon',
     apellido:'Canchola Espinoza',
     correo:'13030564@itcelaya.edu.mx',
-    pais: ''
+    pais: '03',
+    genero: "M"
   }
 
   //Propiedad para obtener los datos de los estados de la INEGI
@@ -29,7 +30,7 @@ export class TemplateComponent implements OnInit {
         nombre: 'Seleccione Estado',
         codigo: '' //Si condigo no tiene valor, lo muestra por defecto en el select
       })//Insertar en ARRAY estados
-      console.log(this.estados);
+      // console.log(this.estados);
     });
   }
 
