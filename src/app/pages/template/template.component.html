@@ -63,6 +63,22 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Estado</label>
+    <div class="col-8">
+      <select class="form-control"
+              name="estado"
+              [disabled]="estados.length === 0"
+              [ngModel] = "usuario.pais"
+              [class.is-invalid]="estado.invalid && estado.untouched"
+              required
+              #estado="ngModel"><!-- Para poder usar en condiciones del formulario, le damos una REFERENCIA al ELEMENTO -->
+        <option *ngFor="let estado of estados" [value]="estado.codigo">{{ estado.nombre }}</option>
+      </select>
+      <small *ngIf="estado.invalid && estado.touched"
+              class="form-text text-danger">El Estado es Obligatorio</small>
+    </div>
+  </div>
 
 
   <div class="form-group row">

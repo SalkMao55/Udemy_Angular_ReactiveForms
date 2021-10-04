@@ -12,14 +12,24 @@ export class TemplateComponent implements OnInit {
   usuario = {
     nombre:'Salomon',
     apellido:'Canchola Espinoza',
-    correo:'13030564@itcelaya.edu.mx'
+    correo:'13030564@itcelaya.edu.mx',
+    pais: ''
   }
+
+  //Propiedad para obtener los datos de los estados de la INEGI
+  estados: any[] = [];
 
   constructor( private paisService: PaisService ) { }
 
   ngOnInit(): void {
-    this.paisService.getPaises().subscribe( paises =>{
-      console.log(paises);
+    this.paisService.getPaises().subscribe( estados =>{
+      this.estados = estados;
+      //Dar valor por defecto al select de ESTADOS
+      this.estados.unshift({
+        nombre: 'Seleccione Estado',
+        codigo: '' //Si condigo no tiene valor, lo muestra por defecto en el select
+      })//Insertar en ARRAY estados
+      console.log(this.estados);
     });
   }
 
