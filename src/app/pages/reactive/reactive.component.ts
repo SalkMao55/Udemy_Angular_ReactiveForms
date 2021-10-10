@@ -18,6 +18,19 @@ export class ReactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Geter (es como una propiedad)
+  get nombreNoValido(){
+    return this.forma.get('nombre')?.invalid && this.forma.get('nombre')?.touched;
+  }
+
+  get apellidoNoValido(){
+    return this.forma.get('apellido')?.invalid && this.forma.get('apellido')?.touched;
+  }
+
+  get correoNoValido(){
+    return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched;
+  }
+
   // Metodo para crear el formulario
   crearFormulario(){
     this.forma = this.fb.group({
@@ -31,6 +44,15 @@ export class ReactiveComponent implements OnInit {
   // Metodo para guardar el contenido del formulario
   guardar(){
     console.log(this.forma);
+    //Impedir guardar datos si no es VALIDO el FORMULARIO
+    if (this.forma.invalid) {
+      // The Object.values() method returns an array of a given object's own enumerable property values,
+      // in the same order as that provided by a for...in loop.
+      return Object.values( this.forma.controls ).forEach( control => { //Por cada "Control" del formulario
+        //Marcar para mostrar alertas en Inputs
+        control.markAsTouched();
+      });
+    }
   }
 
 }
