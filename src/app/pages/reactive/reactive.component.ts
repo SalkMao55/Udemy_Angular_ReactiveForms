@@ -30,6 +30,16 @@ export class ReactiveComponent implements OnInit {
   get correoNoValido(){
     return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched;
   }
+  //Geters para Direccion
+  get distritoNoValido(){
+    return this.forma.get('direccion.distrito')?.invalid && this.forma.get('direccion.distrito')?.touched;
+  }
+
+  get ciudadNoValida(){
+    return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched;
+  }
+
+
 
   // Metodo para crear el formulario
   crearFormulario(){
@@ -53,8 +63,14 @@ export class ReactiveComponent implements OnInit {
       // The Object.values() method returns an array of a given object's own enumerable property values,
       // in the same order as that provided by a for...in loop.
       return Object.values( this.forma.controls ).forEach( control => { //Por cada "Control" del formulario
-        //Marcar para mostrar alertas en Inputs
-        control.markAsTouched();
+        if (control instanceof FormGroup ) {
+          //Marcar componentes del Objeto o control conformado por un FormGroup, este caso DIRECCION
+          Object.values( control.controls ).forEach( subcontrol => subcontrol.markAsTouched() );
+        }
+        else{
+          //Marcar para mostrar alertas en Inputs
+          control.markAsTouched();
+        }
       });
     }
   }
