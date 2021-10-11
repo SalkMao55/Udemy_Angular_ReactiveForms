@@ -13,6 +13,7 @@ export class ReactiveComponent implements OnInit {
 
   constructor( private fb:FormBuilder) { 
     this.crearFormulario();
+    this.cargarDataAlFormulario();
    }
 
   ngOnInit(): void {
@@ -55,6 +56,20 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  //Metodo para cargar los datos al formulario
+  cargarDataAlFormulario(){
+    //this.forma.setValue({ //Referencia de uso de "setValue"
+    this.forma.reset({
+      nombre:  'Fernando',
+      apellido:  'Cabrera Estrada',
+      correo:  'fernando.cab_95@gmail.com',
+      direccion: {
+        distrito:  'Guanajuato',
+        ciudad:  'Abasolo'
+      }
+    })
+  }
+
   // Metodo para guardar el contenido del formulario
   guardar(){
     console.log(this.forma);
@@ -73,6 +88,12 @@ export class ReactiveComponent implements OnInit {
         }
       });
     }
+
+    //Posteo de informacion
+    //Reseteamos los campos del formulario una vez posteada la informacion
+    this.forma.reset({
+      nombre: 'Sin Nombre'
+    });
   }
 
 }
