@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -40,6 +40,13 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched;
   }
 
+  //Getter para hacer referencia al formARRAY
+  
+  get pasatiempos() {
+    return this.forma.get('pasatiempos') as FormArray;
+  }
+  
+
 
 
   // Metodo para crear el formulario
@@ -52,7 +59,10 @@ export class ReactiveComponent implements OnInit {
       direccion:  this.fb.group({
         distrito:  ['',Validators.required],
         ciudad  :  ['',Validators.required],
-      })
+      }),
+      pasatiempos: this.fb.array([
+        [],[],[]
+      ])
     });
   }
 
