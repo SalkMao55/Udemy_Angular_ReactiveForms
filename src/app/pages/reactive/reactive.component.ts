@@ -80,6 +80,17 @@ export class ReactiveComponent implements OnInit {
     })
   }
 
+  //Metodo para agregar pasatiempos con el boton "agregar +"
+  agregarPasatiempo(){//Trabajamos con FormArray "pasatiempos"
+    //this.pasatiempos.push( this.fb.control('Nuevo elemento', Validators.required) );//Ejemplo con Validaciones
+    this.pasatiempos.push( this.fb.control('') );
+  }
+
+  //Metodo para borrar los pasatiempos con el boton "borrar"
+  borrarPasatiempo( i:number ){
+    this.pasatiempos.removeAt(i);//Remover de FormArray en un Index seleccionado "i"
+  }
+
   // Metodo para guardar el contenido del formulario
   guardar(){
     console.log(this.forma);
