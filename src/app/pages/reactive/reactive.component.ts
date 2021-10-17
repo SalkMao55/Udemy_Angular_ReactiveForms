@@ -16,6 +16,7 @@ export class ReactiveComponent implements OnInit {
                 private validadores: ValidadoresService) { 
     this.crearFormulario();
     this.cargarDataAlFormulario();
+    this.crearListener();
    }
 
   ngOnInit(): void {
@@ -85,6 +86,18 @@ export class ReactiveComponent implements OnInit {
       //Los validadores de formulario, las funciones DEBEN RETORNAR UNA FUNCION
       validators:  this.validadores.passwordsIguales('pass1','pass2')
     });
+  }
+
+  //Metodo para crear los Listener: Poder reaccionar al primer cambio en el formulario
+  crearListener(){
+    /* //Cualquier cambio que sufra un valor del formulario, disparara el contenido de "valueChanges"
+    this.forma.valueChanges.subscribe( valor => {
+      console.log(valor);
+    });
+    //Ver el status
+    this.forma.statusChanges.subscribe(estatus => console.log(estatus) ); */
+    //Para ver solo un cambio en especifico y no TODO EL FORMULARIO
+    this.forma.get('nombre').valueChanges.subscribe(console.log);
   }
 
   //Metodo para cargar los datos al formulario
