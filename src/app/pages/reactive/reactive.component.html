@@ -36,6 +36,7 @@
 
   </div>
 
+  <!-- Seccion para correo -->
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col">
@@ -46,10 +47,27 @@
              formControlName="correo"
              [class.is-invalid]="correoNoValido">
       <small *ngIf="correoNoValido" class="text-danger" >
-        Ingrese la contraseña
+        Ingrese el Correo
       </small>
     </div>
   </div>
+
+  <!-- Seccion para Usuario-->
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Usuario</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="text"
+             placeholder="Ingrese su Nombre de Usuario"
+             formControlName="usuario"
+             [class.is-invalid]="usuarioNoValido">
+      <small *ngIf="usuarioNoValido" class="text-danger" >
+        Ese nombre de usuario ya fue usado
+      </small>
+    </div>
+  </div>
+
   <!-- Seccion para contraseña -->
   <div class="form-group row">
     <label class="col-2 col-form-label">Contraseña</label>
@@ -81,6 +99,7 @@
     </div>
   </div>
 
+  <!-- Seccion para Direccion -->
   <div class="form-group row" formGroupName="direccion">
     <label class="col-2 col-form-label">Direccion</label>
     <div class="form-row col">
